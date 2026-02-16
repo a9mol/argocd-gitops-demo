@@ -8,7 +8,7 @@ metadata:
   namespace: demo-app
 
 spec:
-  replicas: 2   # 👈 Pods count (Git me change → auto scale)
+  replicas: 4   # 👈 Pods count (Git me change → auto scale)
 
   selector:
     matchLabels:
