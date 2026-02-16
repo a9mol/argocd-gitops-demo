@@ -1,0 +1,29 @@
+# Yeh ArgoCD Application resource hai
+# ArgoCD ko batata hai GitHub se kaunsa folder deploy karna hai
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-gitops-app
+  namespace: argocd   # 👈 ArgoCD namespace
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/a9mol/argocd-gitops-demo  # 👈 Apna GitHub repo
+    targetRevision: HEAD
+    path: app   # 👈 GitHub ka folder jahan Kubernetes YAMLs hai
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-app
+
+  syncPolicy:
+    automated:
+      prune: true      # 👈 Git me delete → cluster se delete
+      selfHeal: true   # 👈 Drift auto fix
+
+    syncOptions:
+      - CreateNamespace=true   # 👈 Namespace auto create
+

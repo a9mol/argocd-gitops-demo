@@ -1,0 +1,8 @@
+# Kubernetes namespace create karega
+# ArgoCD GitHub se read karke cluster me banayega
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-app   # 👈 Is namespace me app chalega
+

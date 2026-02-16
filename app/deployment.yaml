@@ -1,0 +1,28 @@
+# Kubernetes Deployment — app ke pods run karega
+# Git change → ArgoCD auto deploy
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment
+  namespace: demo-app
+
+spec:
+  replicas: 2   # 👈 Pods count (Git me change → auto scale)
+
+  selector:
+    matchLabels:
+      app: demo
+
+  template:
+    metadata:
+      labels:
+        app: demo
+
+    spec:
+      containers:
+      - name: demo-container
+        image: nginx:latest   # 👈 Container image
+        ports:
+        - containerPort: 80
+
